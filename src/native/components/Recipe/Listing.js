@@ -7,6 +7,7 @@ import {
   Container, Content, Card, CardItem, Body, Text, Button,
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import AddProblem from '../Problem/Fab';
 import Loading from '../UI/Loading';
 import Error from '../UI/Error';
 import Spacer from '../UI/Spacer';
@@ -40,7 +41,7 @@ const RecipeListing = ({
                   <Image
                     source={{ uri: item.image }}
                     style={{
-                      height: 100,
+                      height: 200,
                       width: null,
                       flex: 1,
                       borderRadius: 5,
@@ -81,6 +82,7 @@ const RecipeListing = ({
 
         <Spacer size={20} />
       </Content>
+      <AddProblem />
     </Container>
   );
 };
