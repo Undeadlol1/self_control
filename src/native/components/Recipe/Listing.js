@@ -9,7 +9,6 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Loading from '../UI/Loading';
 import Error from '../UI/Error';
-import Header from '../UI/Header';
 import Spacer from '../UI/Spacer';
 
 const RecipeListing = ({
@@ -31,13 +30,8 @@ const RecipeListing = ({
   return (
     <Container>
       <Content padder>
-        <Header
-          title="Top Recipes"
-          content="This is here to show how you can read and display data from a data source (in our case, Firebase)."
-        />
-
         <FlatList
-          numColumns={2}
+          numColumns={1}
           data={recipes}
           renderItem={({ item }) => (
             <Card transparent style={{ paddingHorizontal: 6 }}>
