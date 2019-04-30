@@ -1,33 +1,8 @@
 import React from 'react';
-import { Actions as router } from 'react-native-router-flux';
 import {
-  Container, Content, Text, H1, H2, H3, Fab, Icon, View,
+  Container, Content, Text, H1, H2, H3,
 } from 'native-base';
 import Spacer from './UI/Spacer';
-/**
- * Floating Action Button which redirects
- * user to content creation screen.
- */
-class Add extends React.Component {
-  state = { active: true }
-
-  render() {
-    const { active } = this.state;
-    return (
-      <View>
-        <Fab
-          active={active}
-          direction="up"
-          containerStyle={{}}
-          position="bottomRight"
-          onPress={() => router.jump('profile')}
-        >
-          <Icon name="add" />
-        </Fab>
-      </View>
-    );
-  }
-}
 
 const About = () => (
   <Container>
@@ -68,7 +43,6 @@ const About = () => (
         {' '}
       </Text>
     </Content>
-    <Add />
   </Container>
 );
 
