@@ -38,11 +38,11 @@ const Index = (
       >
         <Stack
           key="home"
-          title={AppConfig.appName.toUpperCase()}
-          icon={() => <Icon name="planet" {...DefaultProps.icons} />}
+          title={'Self Control'.toUpperCase()}
+          icon={() => <Icon name="list" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >
-          <Scene key="home" component={AboutComponent} />
+          <Scene key="home" component={RecipesContainer} Layout={RecipeListingComponent} />
         </Stack>
 
         <Stack
@@ -52,6 +52,7 @@ const Index = (
           {...DefaultProps.navbarProps}
         >
           <Scene key="recipes" component={RecipesContainer} Layout={RecipeListingComponent} />
+          {/* <Scene key="recipes" component={AboutComponent} /> */}
         </Stack>
 
         <Stack
