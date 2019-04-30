@@ -24,7 +24,7 @@ const RecipeListing = ({
   // Error
   if (error) return <Error content={error} />;
 
-  const keyExtractor = item => item.id;
+  const keyExtractor = item => String(item.id);
 
   const onPress = item => Actions.recipe({ match: { params: { id: String(item.id) } } });
 
@@ -56,17 +56,6 @@ const RecipeListing = ({
                     {item.title}
                   </Text>
                   <Spacer size={15} />
-                  <Button
-                    block
-                    bordered
-                    small
-                    onPress={() => onPress(item)}
-                  >
-                    <Text>
-                      View Recipe
-                    </Text>
-                  </Button>
-                  <Spacer size={5} />
                 </Body>
               </CardItem>
             </Card>
