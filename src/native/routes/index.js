@@ -38,6 +38,7 @@ const Index = (
         showLabel={false}
         {...DefaultProps.tabProps}
       >
+        {/* PROBLEMS TAB */}
         <Stack
           key="home"
           title={'Self Control'.toUpperCase()}
@@ -53,17 +54,7 @@ const Index = (
             component={CreateProblem}
           />
         </Stack>
-
-        <Stack
-          key="recipes"
-          title="RECIPES"
-          icon={() => <Icon name="book" {...DefaultProps.icons} />}
-          {...DefaultProps.navbarProps}
-        >
-          <Scene key="recipes" component={RecipesContainer} Layout={RecipeListingComponent} />
-          {/* <Scene key="recipes" component={AboutComponent} /> */}
-        </Stack>
-
+        {/* USER TAB */}
         <Stack
           key="profile"
           title="PROFILE"
