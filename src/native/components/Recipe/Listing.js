@@ -4,7 +4,7 @@ import {
   FlatList, TouchableOpacity, RefreshControl, Image,
 } from 'react-native';
 import {
-  Container, Content, Card, CardItem, Body, Text, Button,
+  Container, Content, Card, CardItem, Body, Text,
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import AddProblem from '../Problem/Fab';
@@ -12,10 +12,22 @@ import Loading from '../UI/Loading';
 import Error from '../UI/Error';
 import Spacer from '../UI/Spacer';
 
+const temporaryReplacement = [
+  {
+    id: 1,
+    title: 'Поедание сладкого',
+    image: 'https://i.ytimg.com/vi/jerUAi3whLM/maxresdefault.jpg',
+  },
+  // {
+  //   id: 2,
+  //   title: ''
+  // }
+];
+
 const RecipeListing = ({
   error,
   loading,
-  recipes,
+  // recipes,
   reFetch,
 }) => {
   // Loading
@@ -33,7 +45,7 @@ const RecipeListing = ({
       <Content padder>
         <FlatList
           numColumns={1}
-          data={recipes}
+          data={temporaryReplacement}
           renderItem={({ item }) => (
             <Card transparent style={{ paddingHorizontal: 6 }}>
               <CardItem cardBody>

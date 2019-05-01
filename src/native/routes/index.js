@@ -26,6 +26,8 @@ import ProfileComponent from '../components/User/Profile';
 
 import AboutComponent from '../components/About';
 
+import CreateProblem from '../components/Problem/Create';
+
 const Index = (
   <Stack hideNavBar>
     <Scene hideNavBar>
@@ -43,6 +45,13 @@ const Index = (
           {...DefaultProps.navbarProps}
         >
           <Scene key="home" component={RecipesContainer} Layout={RecipeListingComponent} />
+          <Scene
+            back
+            key="createProblem"
+            title="Create A Problem"
+            {...DefaultProps.navbarProps}
+            component={CreateProblem}
+          />
         </Stack>
 
         <Stack

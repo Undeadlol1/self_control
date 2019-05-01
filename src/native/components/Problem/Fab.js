@@ -19,7 +19,7 @@ export default class Add extends React.Component {
             direction="up"
             containerStyle={{}}
             position="bottomRight"
-            onPress={() => router.jump('profile')}
+            onPress={() => router.jump('createProblem')}
           >
             <Icon name="add" />
           </Fab>
