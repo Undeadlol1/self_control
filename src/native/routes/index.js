@@ -27,6 +27,7 @@ import ProfileComponent from '../components/User/Profile';
 import AboutComponent from '../components/About';
 
 import CreateProblem from '../components/Problem/Create';
+import CreateProblemContainer from '../../containers/CreateProblem';
 
 const Index = (
   <Stack hideNavBar>
@@ -51,7 +52,8 @@ const Index = (
             key="createProblem"
             title="Create A Problem"
             {...DefaultProps.navbarProps}
-            component={CreateProblem}
+            component={CreateProblemContainer}
+            Layout={CreateProblem}
           />
         </Stack>
         {/* USER TAB */}

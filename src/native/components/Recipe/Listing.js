@@ -7,6 +7,7 @@ import {
   Container, Content, Card, CardItem, Body, Text,
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux'
 import AddProblem from '../Problem/Fab';
 import Loading from '../UI/Loading';
 import Error from '../UI/Error';
@@ -29,6 +30,7 @@ const RecipeListing = ({
   loading,
   // recipes,
   reFetch,
+  problems
 }) => {
   // Loading
   if (loading) return <Loading />;
@@ -39,7 +41,7 @@ const RecipeListing = ({
   const keyExtractor = item => String(item.id);
 
   const onPress = item => Actions.recipe({ match: { params: { id: String(item.id) } } });
-
+  console.log('problems', problems)
   return (
     <Container>
       <Content padder>
@@ -100,4 +102,8 @@ RecipeListing.defaultProps = {
   reFetch: null,
 };
 
-export default RecipeListing;
+const mapStateToProps = state => ({
+  problems: state.problems.values || [],
+});
+
+export default connect(mapStateToProps)(RecipeListing);
