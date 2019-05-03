@@ -6,7 +6,10 @@ import create from '../actions/problems';
 
 class CreateProblemContainer extends Component {
   static propTypes = {
-    Layout: PropTypes.func.isRequired,
+    // Due to constant problems in router,
+    // passing component as "Layout" is disabled.
+    // TODO: fix or remove this line.
+    // Layout: PropTypes.func.isRequired,
     member: PropTypes.shape({}).isRequired,
     onFormSubmit: PropTypes.func.isRequired,
   }
@@ -38,9 +41,8 @@ class CreateProblemContainer extends Component {
   }
 
   render = () => {
-    const { member, Layout } = this.props;
+    const { member } = this.props;
     const { error, loading, success } = this.state;
-    console.log('Layout', Layout)
     return (
       <CreateProblem
         error={error}

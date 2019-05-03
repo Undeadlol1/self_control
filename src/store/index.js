@@ -17,7 +17,7 @@ const configureStore = () => {
 
   const store = createStore(reducer, composeEnhancer(applyMiddleware(...middleware)));
   const persistor = persistStore(store, null, () => { store.getState(); });
-
+persistor.flush()
   return { persistor, store };
 };
 
