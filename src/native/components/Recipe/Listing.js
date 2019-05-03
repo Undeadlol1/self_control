@@ -15,7 +15,7 @@ import Spacer from '../UI/Spacer';
 
 const RecipeListing = ({
   error,
-  loading = false,
+  loading,
   reFetch,
   problems,
 }) => {
@@ -29,6 +29,8 @@ const RecipeListing = ({
 
   const onPress = item => Actions.recipe({ match: { params: { id: String(item.id) } } });
 
+  const imagePlaceholder = 'https://placeimg.com/640/480/nature/grayscale'
+
   return (
     <Container>
       <Content padder>
@@ -40,7 +42,7 @@ const RecipeListing = ({
               <CardItem cardBody>
                 <TouchableOpacity onPress={() => onPress(item)} style={{ flex: 1 }}>
                   <Image
-                    source={{ uri: item.image }}
+                    source={{ uri: item.image || imagePlaceholder }}
                     style={{
                       height: 200,
                       width: null,
@@ -79,7 +81,7 @@ const RecipeListing = ({
 
 RecipeListing.propTypes = {
   error: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
   problems: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   reFetch: PropTypes.func,
 };
@@ -87,6 +89,7 @@ RecipeListing.propTypes = {
 RecipeListing.defaultProps = {
   error: null,
   reFetch: null,
+  loading: false,
 };
 
 const mapStateToProps = state => ({
