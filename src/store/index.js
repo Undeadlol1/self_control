@@ -2,6 +2,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
+import reduxReset from 'redux-reset';
 import thunk from 'redux-thunk';
 import reducers from '../reducers';
 
@@ -15,9 +16,8 @@ const configureStore = () => {
   // Allows us to use redux devtools when it exists
   const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-  const store = createStore(reducer, composeEnhancer(applyMiddleware(...middleware)));
+  const store = createStore(reducer, composeEnhancer(applyMiddleware(...middleware), reduxReset()));
   const persistor = persistStore(store, null, () => { store.getState(); });
-persistor.flush()
   return { persistor, store };
 };
 

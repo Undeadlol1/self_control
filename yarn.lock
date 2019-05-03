@@ -11401,6 +11401,11 @@ redux-persist@^5.10.0:
   resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.10.0.tgz#5d8d802c5571e55924efc1c3a9b23575283be62b"
   integrity sha512-sSJAzNq7zka3qVHKce1hbvqf0Vf5DuTVm7dr4GtsqQVOexnrvbV47RWFiPxQ8fscnyiuWyD2O92DOxPl0tGCRg==
 
+redux-reset@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/redux-reset/-/redux-reset-0.3.0.tgz#ab80795b410d5b28689986eac40cb847a69cd012"
+  integrity sha1-q4B5W0ENWyhomYbqxAy4R6ac0BI=
+
 redux-thunk@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
