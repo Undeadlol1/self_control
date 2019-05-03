@@ -46,7 +46,7 @@ const Index = (
           icon={() => <Icon name="list" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >
-          <Scene key="home" component={RecipesContainer} Layout={RecipeListingComponent} />
+          <Scene key="home" component={RecipeListingComponent} />
           <Scene
             back
             key="createProblem"
@@ -100,7 +100,7 @@ const Index = (
       </Tabs>
     </Scene>
 
-    <Scene
+    {/* <Scene
       back
       clone
       key="recipe"
@@ -108,7 +108,7 @@ const Index = (
       {...DefaultProps.navbarProps}
       component={RecipesContainer}
       Layout={RecipeSingleComponent}
-    />
+    /> */}
   </Stack>
 );
 
