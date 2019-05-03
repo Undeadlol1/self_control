@@ -22,4 +22,7 @@ export const errorMessages = {
   // Recipes
   recipe404: 'Recipe not found',
   missingMealId: 'Missing meal definition',
+
+  // Problems.
+  missingName: 'Name is missing',
 };

@@ -1,18 +1,17 @@
 import { errorMessages } from '../constants/messages';
 /**
  * Create a problem.
- * @param {Object} formData
+ * @param {object} data problem object directly from form.
+ * @property {string} data.name
+ * @property {string} data.image Problem's image URL.
+ * @returns {Promise} successful resolve function.
  */
-export default function addProblem(formData) {
-  const {
-    name,
-  } = formData;
-
-  return () => new Promise(async (resolve, reject) => {
+export default function addProblem(data) {
+  return dispatch => new Promise(async (resolve, reject) => {
     // Validation rules
-    if (!name) return reject({ message: errorMessages.missingFirstName });
+    if (!data.name) return reject({ message: errorMessages.missingName });
 
     // Call reducer action.
-    return dispatch => dispatch({ type: 'ADD_PROBLEM', data: formData }).then(() => resolve())
+    return resolve(dispatch({ type: 'ADD_PROBLEM', data }));
   }).catch((err) => { throw err.message; });
 }
