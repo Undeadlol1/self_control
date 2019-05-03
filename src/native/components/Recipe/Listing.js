@@ -7,30 +7,17 @@ import {
   Container, Content, Card, CardItem, Body, Text,
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import AddProblem from '../Problem/Fab';
 import Loading from '../UI/Loading';
 import Error from '../UI/Error';
 import Spacer from '../UI/Spacer';
 
-const temporaryReplacement = [
-  {
-    id: 1,
-    title: 'Поедание сладкого',
-    image: 'https://i.ytimg.com/vi/jerUAi3whLM/maxresdefault.jpg',
-  },
-  // {
-  //   id: 2,
-  //   title: ''
-  // }
-];
-
 const RecipeListing = ({
   error,
-  loading,
-  // recipes,
+  loading = false,
   reFetch,
-  problems
+  problems,
 }) => {
   // Loading
   if (loading) return <Loading />;
@@ -41,13 +28,13 @@ const RecipeListing = ({
   const keyExtractor = item => String(item.id);
 
   const onPress = item => Actions.recipe({ match: { params: { id: String(item.id) } } });
-  console.log('problems', problems)
+
   return (
     <Container>
       <Content padder>
         <FlatList
           numColumns={1}
-          data={temporaryReplacement}
+          data={problems}
           renderItem={({ item }) => (
             <Card transparent style={{ paddingHorizontal: 6 }}>
               <CardItem cardBody>
@@ -93,7 +80,7 @@ const RecipeListing = ({
 RecipeListing.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  recipes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  problems: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   reFetch: PropTypes.func,
 };
 
