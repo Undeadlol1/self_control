@@ -28,7 +28,7 @@ class CreateProblemContainer extends Component {
     return onFormSubmit(data)
       .then(() => this.setState({
         loading: false,
-        success: 'Success - Logged in',
+        success: 'success', // i18n trsnslation key
         error: null,
       })).catch((err) => {
         this.setState({

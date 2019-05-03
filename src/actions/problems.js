@@ -1,4 +1,3 @@
-import { errorMessages } from '../constants/messages';
 /**
  * Create a problem.
  * @param {object} data problem object directly from form.
@@ -9,7 +8,7 @@ import { errorMessages } from '../constants/messages';
 export default function addProblem(data) {
   return dispatch => new Promise(async (resolve, reject) => {
     // Validation rules
-    if (!data.title) return reject({ message: errorMessages.missingTitle });
+    if (!data.title) return reject({ message: 'missingTitle' });
 
     // Call reducer action.
     return resolve(dispatch({ type: 'ADD_PROBLEM', data }));

@@ -7,6 +7,7 @@ import { Actions } from 'react-native-router-flux';
 import Messages from '../UI/Messages';
 import Header from '../UI/Header';
 import Spacer from '../UI/Spacer';
+import i18n from '../../../lib/i18n';
 
 class Create extends React.Component {
   static propTypes = {
@@ -49,22 +50,21 @@ class Create extends React.Component {
   render() {
     const { loading, error, success } = this.props;
     const { title, image } = this.state;
-
     return (
       <Container>
         <Content>
           <View padder>
-            <Header
+            {/* <Header
               title="Welcome back"
               content="Please use your email and password to login."
-            />
-            {error && <Messages message={error} />}
-            {success && <Messages type="success" message={success} />}
+            /> */}
+            {error && <Messages message={i18n.t(error)} />}
+            {success && <Messages type="success" message={i18n.t(success)} />}
           </View>
 
           <Form>
             <Item stackedLabel>
-              <Label>Название</Label>
+              <Label>{i18n.t('title')}</Label>
               <Input
                 value={title}
                 disabled={loading}
@@ -72,7 +72,7 @@ class Create extends React.Component {
               />
             </Item>
             <Item stackedLabel>
-              <Label>Изображение (необязательно)</Label>
+              <Label>{i18n.t('image_not_required')}</Label>
               <Input
                 value={image}
                 disabled={loading}
@@ -84,7 +84,7 @@ class Create extends React.Component {
 
             <View padder>
               <Button block onPress={this.handleSubmit} disabled={loading}>
-                <Text>{loading ? 'Загрузка' : 'Создать'}</Text>
+                <Text>{loading ? i18n.t('loading') : i18n.t('create')}</Text>
               </Button>
             </View>
           </Form>

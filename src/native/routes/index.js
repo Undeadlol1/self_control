@@ -1,6 +1,7 @@
 import React from 'react';
 import { Scene, Tabs, Stack } from 'react-native-router-flux';
 import { Icon } from 'native-base';
+import i18n from '../../lib/i18n';
 
 import DefaultProps from '../constants/navigation';
 import AppConfig from '../../constants/config';
@@ -50,7 +51,7 @@ const Index = (
           <Scene
             back
             key="createProblem"
-            title="Create A Problem"
+            title={i18n.t('create_a_problem').toUpperCase()}
             {...DefaultProps.navbarProps}
             component={CreateProblemContainer}
             Layout={CreateProblem}
