@@ -29,7 +29,7 @@ const RecipeListing = ({
 
   const onPress = item => Actions.recipe({ match: { params: { id: String(item.id) } } });
 
-  const imagePlaceholder = 'https://placeimg.com/640/480/nature/grayscale'
+  const imagePlaceholder = 'https://via.placeholder.com/640x480';
 
   return (
     <Container>
