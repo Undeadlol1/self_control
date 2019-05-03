@@ -48,7 +48,7 @@ class Create extends React.Component {
 
   render() {
     const { loading, error, success } = this.props;
-    const { name, image } = this.state;
+    const { title, image } = this.state;
 
     return (
       <Container>
@@ -64,11 +64,11 @@ class Create extends React.Component {
 
           <Form>
             <Item stackedLabel>
-              <Label>Имя</Label>
+              <Label>Название</Label>
               <Input
-                value={name}
+                value={title}
                 disabled={loading}
-                onChangeText={v => this.handleChange('name', v)}
+                onChangeText={v => this.handleChange('title', v)}
               />
             </Item>
             <Item stackedLabel>

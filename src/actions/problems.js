@@ -9,7 +9,7 @@ import { errorMessages } from '../constants/messages';
 export default function addProblem(data) {
   return dispatch => new Promise(async (resolve, reject) => {
     // Validation rules
-    if (!data.name) return reject({ message: errorMessages.missingName });
+    if (!data.title) return reject({ message: errorMessages.missingTitle });
 
     // Call reducer action.
     return resolve(dispatch({ type: 'ADD_PROBLEM', data }));

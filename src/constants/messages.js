@@ -24,5 +24,5 @@ export const errorMessages = {
   missingMealId: 'Missing meal definition',
 
   // Problems.
-  missingName: 'Name is missing',
+  missingTitle: 'Title is missing',
 };

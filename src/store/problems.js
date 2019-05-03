@@ -3,7 +3,8 @@
  */
 export const emptyProblem = {
   id: '',
-  name: '',
+  title: '',
+  image: '',
 };
 /**
  * Default state of a "problems" reducer.
