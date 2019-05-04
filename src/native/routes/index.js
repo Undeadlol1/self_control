@@ -33,22 +33,22 @@ import CreateProblemContainer from '../../containers/CreateProblem';
 const Index = (
   <Stack hideNavBar>
     <Scene hideNavBar>
-      <Tabs
+      {/* <Tabs
         key="tabbar"
         swipeEnabled
         type="replace"
         showLabel={false}
         {...DefaultProps.tabProps}
+      > */}
+      {/* PROBLEMS TAB */}
+      <Stack
+        key="home"
+        title={'Self Control'.toUpperCase()}
+        icon={() => <Icon name="home" {...DefaultProps.icons} />}
+        {...DefaultProps.navbarProps}
       >
-        {/* PROBLEMS TAB */}
-        <Stack
-          key="home"
-          title={'Self Control'.toUpperCase()}
-          icon={() => <Icon name="home" {...DefaultProps.icons} />}
-          {...DefaultProps.navbarProps}
-        >
-          <Scene key="home" component={RecipeListingComponent} />
-          <Scene
+        <Scene key="home" component={RecipeListingComponent} />
+        <Scene
             back
             key="createProblem"
             title={i18n.t('create_a_problem').toUpperCase()}
@@ -56,9 +56,9 @@ const Index = (
             component={CreateProblemContainer}
             Layout={CreateProblem}
           />
-        </Stack>
-        {/* USER TAB */}
-        {/* <Stack
+      </Stack>
+      {/* USER TAB */}
+      {/* <Stack
           key="profile"
           title="PROFILE"
           icon={() => <Icon name="contact" {...DefaultProps.icons} />}
@@ -98,7 +98,7 @@ const Index = (
             Layout={UpdateProfileComponent}
           />
         </Stack> */}
-      </Tabs>
+      {/* </Tabs> */}
     </Scene>
 
     {/* <Scene
