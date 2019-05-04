@@ -44,7 +44,7 @@ const Index = (
         <Stack
           key="home"
           title={'Self Control'.toUpperCase()}
-          icon={() => <Icon name="list" {...DefaultProps.icons} />}
+          icon={() => <Icon name="home" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >
           <Scene key="home" component={RecipeListingComponent} />
@@ -58,7 +58,7 @@ const Index = (
           />
         </Stack>
         {/* USER TAB */}
-        <Stack
+        {/* <Stack
           key="profile"
           title="PROFILE"
           icon={() => <Icon name="contact" {...DefaultProps.icons} />}
@@ -97,7 +97,7 @@ const Index = (
             component={UpdateProfileContainer}
             Layout={UpdateProfileComponent}
           />
-        </Stack>
+        </Stack> */}
       </Tabs>
     </Scene>
 
