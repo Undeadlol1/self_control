@@ -61,6 +61,7 @@
     "gh-pages": "^2.0.1",
     "jest-expo": "^32.0.0",
     "node-sass": "^4.11.0",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "uuid-validate": "^0.0.3"
   }
 }

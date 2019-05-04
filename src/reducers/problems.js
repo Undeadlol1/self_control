@@ -3,19 +3,15 @@ import Store, { emptyProblem } from '../store/problems';
 
 export default function problemsReducer(state = Store, action) {
   switch (action.type) {
-    // Add new problem into "values" array.
+    /**
+     * Add "id" property and insert problem into "values".
+     */
     case 'ADD_PROBLEM': {
       const newState = {
         ...state,
         values: [
           ...state.values,
-          {
-            // Create unique id to avoid problems with:
-            // 1) Missing keys in List components.
-            // 2) Syncing with database.
-            id: uuid(),
-            ...action.data,
-          },
+          { id: uuid(), ...action.data },
         ],
 
       };
