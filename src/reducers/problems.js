@@ -1,8 +1,9 @@
 import uuid from 'uuid/v4';
+import filter from 'lodash/filter';
 import Store, { emptyProblem } from '../store/problems';
 
-export default function problemsReducer(state = Store, action) {
-  switch (action.type) {
+export default function problemsReducer(state = Store, { type, data }) {
+  switch (type) {
     /**
      * Add "id" property and insert problem into "values".
      */
@@ -11,10 +12,17 @@ export default function problemsReducer(state = Store, action) {
         ...state,
         values: [
           ...state.values,
-          { id: uuid(), ...action.data },
+          { id: uuid(), ...data },
         ],
-
       };
+      return newState;
+    }
+    /**
+     * Remove problem from 'values' array by id.
+     */
+    case 'DELETE_PROBLEM': {
+      const values = filter(state.values, i => i.id !== data);
+      const newState = Object.assign({}, state, { values });
       return newState;
     }
     default:
