@@ -48,15 +48,15 @@ describe('problems reducer', async () => {
   /**
    * EDIT_PROBLEM should:
    * 1) Edit an object in "values" array.
-   * 2) Not all of the properties should be editable.
+   * 2) TODO: Not all properties should be editable.
    */
   it('should handle EDIT_PROBLEM', () => {
-    // const data = { title: 'A new title', id: generateUuid() };
-    // const action = { type: 'EDIT_PROBLEM', data };
-    // const { values } = reducer(populatedState, action);
-    // expect(values).toHaveLength(3);
-    // expect(values[0]).toHaveProperty('id');
-    // expect(isUuid(values[0].id)).toBeTruthy();
+    const data = { title: 'A new title', id: 1 };
+    const action = { type: 'EDIT_PROBLEM', data };
+    const { values } = reducer(populatedState, action);
+    expect(values).toHaveLength(2);
+    expect(values[0]).toHaveProperty('title', data.title);
+    expect(values[1].title).toEqual(populatedState.values[1].title);
   });
   /**
    * Remove a problem from 'values' array by problem.id.

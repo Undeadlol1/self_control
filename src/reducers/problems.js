@@ -18,6 +18,19 @@ export default function problemsReducer(state = Store, { type, data }) {
       return newState;
     }
     /**
+     * Edit a problem inside 'values' array.
+     * NOTE: Not all object properties must be editable.
+     */
+    case 'EDIT_PROBLEM': {
+      const newState = Object.assign({}, state, {
+        values: state.values.map((i) => {
+          if (i.id === data.id) return Object.assign(i, data);
+          return i;
+        }),
+      });
+      return newState;
+    }
+    /**
      * Remove problem from 'values' array by id.
      */
     case 'DELETE_PROBLEM': {
