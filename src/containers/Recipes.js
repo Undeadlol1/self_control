@@ -28,16 +28,19 @@ class RecipeListing extends Component {
     const { fetchRecipes, fetchMeals } = this.props;
 
     this.setState({ loading: true });
-
-    return fetchRecipes(data)
-      .then(() => fetchMeals())
-      .then(() => this.setState({
-        loading: false,
-        error: null,
-      })).catch(err => this.setState({
-        loading: false,
-        error: err,
-      }));
+    return {
+      err: null,
+      loading: false,
+    };
+    // return fetchRecipes(data)
+    //   .then(() => fetchMeals())
+    //   .then(() => this.setState({
+    //     loading: false,
+    //     error: null,
+    //   })).catch(err => this.setState({
+    //     loading: false,
+    //     error: err,
+    //   }));
   }
 
   render = () => {
