@@ -9,47 +9,43 @@ import Error from '../UI/Error';
 import Spacer from '../UI/Spacer';
 
 const RecipeView = ({
-  error, recipes, recipeId,
+  error, problems, recipeId,
 }) => {
   // Error
   if (error) return <Error content={error} />;
 
   // Get this Recipe from all recipes
   let recipe = null;
-  if (recipeId && recipes) {
-    recipe = recipes.find(item => parseInt(item.id, 10) === parseInt(recipeId, 10));
+  if (recipeId && problems) {
+    recipe = problems.find(item => item.id === recipeId);
   }
-
   // Recipe not found
   if (!recipe) return <Error content={errorMessages.recipe404} />;
 
   // Build Ingredients listing
-  const ingredients = recipe.ingredients.map(item => (
-    <ListItem key={item} rightIcon={{ style: { opacity: 0 } }}>
-      <Text>{item}</Text>
-    </ListItem>
-  ));
+  // const ingredients = recipe.ingredients.map(item => (
+  //   <ListItem key={item} rightIcon={{ style: { opacity: 0 } }}>
+  //     <Text>{item}</Text>
+  //   </ListItem>
+  // ));
 
   // Build Method listing
-  const method = recipe.method.map(item => (
-    <ListItem key={item} rightIcon={{ style: { opacity: 0 } }}>
-      <Text>{item}</Text>
-    </ListItem>
-  ));
+  // const method = recipe.method.map(item => (
+  //   <ListItem key={item} rightIcon={{ style: { opacity: 0 } }}>
+  //     <Text>{item}</Text>
+  //   </ListItem>
+  // ));
+  const imagePlaceholder = 'https://via.placeholder.com/640x480';
 
   return (
     <Container>
       <Content padder>
-        <Image source={{ uri: recipe.image }} style={{ height: 100, width: null, flex: 1 }} />
+        <Image
+          style={{ height: 100, width: null, flex: 1 }}
+          source={{ uri: recipe.image || imagePlaceholder }}
+        />
 
         <Spacer size={25} />
-        <H3>{recipe.title}</H3>
-        <Text>
-          by
-          {' '}
-          {recipe.author}
-        </Text>
-        <Spacer size={15} />
 
         <Card>
           <CardItem header bordered>
@@ -68,7 +64,7 @@ const RecipeView = ({
           </CardItem>
           <CardItem>
             <Content>
-              <List>{ingredients}</List>
+              {/* <List>{ingredients}</List> */}
             </Content>
           </CardItem>
         </Card>
@@ -78,7 +74,7 @@ const RecipeView = ({
             <Text>Method</Text>
           </CardItem>
           <CardItem>
-            <List>{method}</List>
+            {/* <List>{method}</List> */}
           </CardItem>
         </Card>
 
@@ -91,7 +87,7 @@ const RecipeView = ({
 RecipeView.propTypes = {
   error: PropTypes.string,
   recipeId: PropTypes.string.isRequired,
-  recipes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  problems: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 RecipeView.defaultProps = {

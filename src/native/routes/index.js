@@ -49,13 +49,13 @@ const Index = (
       >
         <Scene key="home" component={RecipeListingComponent} />
         <Scene
-            back
-            key="createProblem"
-            title={i18n.t('create_a_problem').toUpperCase()}
-            {...DefaultProps.navbarProps}
-            component={CreateProblemContainer}
-            Layout={CreateProblem}
-          />
+          back
+          key="createProblem"
+          title={i18n.t('create_a_problem').toUpperCase()}
+          {...DefaultProps.navbarProps}
+          component={CreateProblemContainer}
+          Layout={CreateProblem}
+        />
       </Stack>
       {/* USER TAB */}
       {/* <Stack
@@ -101,7 +101,7 @@ const Index = (
       {/* </Tabs> */}
     </Scene>
 
-    {/* <Scene
+    <Scene
       back
       clone
       key="recipe"
@@ -109,7 +109,7 @@ const Index = (
       {...DefaultProps.navbarProps}
       component={RecipesContainer}
       Layout={RecipeSingleComponent}
-    /> */}
+    />
   </Stack>
 );
 
