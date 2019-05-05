@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import {
   Container, Content, Card, CardItem, Body, H3, List, ListItem, Text,
 } from 'native-base';
 import { errorMessages } from '../../../constants/messages';
 import Error from '../UI/Error';
 import Spacer from '../UI/Spacer';
+import AddProblem from '../UI/AddFab';
 
 const RecipeView = ({
   error, problems, recipeId,
@@ -36,6 +38,11 @@ const RecipeView = ({
   //   </ListItem>
   // ));
   const imagePlaceholder = 'https://via.placeholder.com/640x480';
+  // Navigate to a new screen when FAB is pressed.
+  const onAddProblemPress = () => Actions.createSolution({
+    title: String(recipe.title).toUpperCase(),
+    match: { params: { recipeId: String(recipe.id) } },
+  });
 
   return (
     <Container>
@@ -80,6 +87,7 @@ const RecipeView = ({
 
         <Spacer size={20} />
       </Content>
+      <AddProblem onPress={() => onAddProblemPress()} />
     </Container>
   );
 };
