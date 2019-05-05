@@ -2,13 +2,15 @@
  * English strings for i18n.
  */
 export default {
+  // Common.
+  loading: 'Loading',
+  success: 'Success',
   // Problems.
   title: 'Title',
   create: 'Create',
   missingTitle: 'Title is missing',
   image_not_required: 'Image (not required)',
   create_a_problem: 'Create A Problem', // Screen title.
-  // Common.
-  loading: 'Loading',
-  success: 'Success',
+  // Solutions.
+  create_a_solution: 'Create A Solution', // Screen title.
 };

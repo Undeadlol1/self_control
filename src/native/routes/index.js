@@ -30,6 +30,9 @@ import AboutComponent from '../components/About';
 import CreateProblem from '../components/Problem/Create';
 import CreateProblemContainer from '../../containers/CreateProblem';
 
+import CreateSolution from '../components/Solution/Create';
+import CreateSolutionContainer from '../../containers/CreateSolution';
+
 const Index = (
   <Stack hideNavBar>
     <Scene hideNavBar>
@@ -56,8 +59,17 @@ const Index = (
           component={CreateProblemContainer}
           Layout={CreateProblem}
         />
+        <Scene
+          back
+          key="createSolution"
+          title={i18n.t('create_a_solution').toUpperCase()}
+          {...DefaultProps.navbarProps}
+          Layout={CreateSolution}
+          component={CreateSolutionContainer}
+        />
       </Stack>
       {/* USER TAB */}
+      {/* Commented out until user system is implemented. */}
       {/* <Stack
           key="profile"
           title="PROFILE"
