@@ -8,7 +8,7 @@ import {
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import AddProblem from '../Problem/Fab';
+import AddProblem from '../UI/AddFab';
 import Loading from '../UI/Loading';
 import Error from '../UI/Error';
 import Spacer from '../UI/Spacer';
@@ -80,7 +80,7 @@ const RecipeListing = ({
 
         <Spacer size={20} />
       </Content>
-      <AddProblem />
+      <AddProblem onPress={() => Actions.jump('createProblem')} />
     </Container>
   );
 };
