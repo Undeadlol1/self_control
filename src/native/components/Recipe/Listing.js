@@ -26,8 +26,14 @@ const RecipeListing = ({
   if (error) return <Error content={error} />;
 
   const keyExtractor = item => String(item.id);
-
-  const onPress = item => Actions.recipe({ match: { params: { id: String(item.id) } } });
+  /**
+   * Navigate to problem screen and change navbar title.
+   * @param {object} item A problem.
+   */
+  const onPress = item => Actions.recipe({
+    title: String(item.title).toUpperCase(),
+    match: { params: { id: String(item.id) } },
+  });
 
   const imagePlaceholder = 'https://via.placeholder.com/640x480';
 
@@ -38,7 +44,7 @@ const RecipeListing = ({
           numColumns={1}
           data={problems}
           renderItem={({ item }) => (
-            <Card transparent style={{ paddingHorizontal: 6 }}>
+            <Card style={{ paddingHorizontal: 6 }}>
               <CardItem cardBody>
                 <TouchableOpacity onPress={() => onPress(item)} style={{ flex: 1 }}>
                   <Image

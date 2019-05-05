@@ -7,7 +7,7 @@ import { getRecipes, getMeals } from '../actions/recipes';
 class RecipeListing extends Component {
   static propTypes = {
     Layout: PropTypes.func.isRequired,
-    recipes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+    problems: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     match: PropTypes.shape({ params: PropTypes.shape({}) }),
     fetchRecipes: PropTypes.func.isRequired,
     fetchMeals: PropTypes.func.isRequired,
@@ -41,7 +41,7 @@ class RecipeListing extends Component {
   }
 
   render = () => {
-    const { Layout, recipes, match } = this.props;
+    const { Layout, problems, match } = this.props;
     const { loading, error } = this.state;
     const id = (match && match.params && match.params.id) ? match.params.id : null;
 
@@ -50,7 +50,7 @@ class RecipeListing extends Component {
         recipeId={id}
         error={error}
         loading={loading}
-        recipes={recipes}
+        problems={problems}
         reFetch={() => this.fetchData()}
       />
     );
@@ -58,7 +58,7 @@ class RecipeListing extends Component {
 }
 
 const mapStateToProps = state => ({
-  recipes: state.recipes.recipes || {},
+  problems: state.problems.values || {},
 });
 
 const mapDispatchToProps = {
