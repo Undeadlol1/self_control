@@ -9,7 +9,7 @@ import Header from '../UI/Header';
 import Spacer from '../UI/Spacer';
 import i18n from '../../../lib/i18n';
 
-class CreateProblem extends React.Component {
+class Create extends React.Component {
   static propTypes = {
     member: PropTypes.shape({
       email: PropTypes.string,
@@ -94,4 +94,4 @@ class CreateProblem extends React.Component {
   }
 }
 
-export default CreateProblem;
+export default Create;
