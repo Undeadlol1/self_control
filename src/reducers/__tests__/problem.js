@@ -1,5 +1,6 @@
 import isUuid from 'uuid-validate';
 import generateUuid from 'uuid/v4';
+import find from 'lodash/find';
 import initialState from '../../store/problems';
 import reducer from '../problems';
 
@@ -57,6 +58,29 @@ describe('problems reducer', async () => {
     expect(values).toHaveLength(2);
     expect(values[0]).toHaveProperty('title', data.title);
     expect(values[1].title).toEqual(populatedState.values[1].title);
+  });
+  /**
+   * Use problem.id to push a solution into "solutions" array.
+   */
+  describe('ADD_SOLUTION', () => {
+    const data = { title: 'A new title', problemId: 1 };
+    const action = { type: 'ADD_SOLUTION', data };
+    // Get problem out of reducer by problemId.
+    const { solutions } = find(
+      reducer(populatedState, action).values,
+      i => i.id === data.problemId,
+    );
+
+    it('should push an object into array', () => {
+      expect(solutions).toHaveLength(1);
+    });
+
+    it('created object should have correct properties.', () => {
+      const [newSolution] = solutions;
+      expect(isUuid(newSolution.id)).toBeTruthy();
+      expect(newSolution).toHaveProperty('title', data.title);
+      expect(newSolution).toHaveProperty('problemId', data.problemId);
+    });
   });
   /**
    * Remove a problem from 'values' array by problem.id.
