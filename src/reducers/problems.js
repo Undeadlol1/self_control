@@ -1,5 +1,9 @@
 import uuid from 'uuid/v4';
 import filter from 'lodash/filter';
+import isEmpty from 'lodash/isEmpty';
+import concat from 'lodash/concat';
+import find from 'lodash/find';
+
 import Store, { emptyProblem } from '../store/problems';
 
 export default function problemsReducer(state = Store, { type, data }) {
@@ -37,6 +41,44 @@ export default function problemsReducer(state = Store, { type, data }) {
       const values = filter(state.values, i => i.id !== data);
       const newState = Object.assign({}, state, { values });
       return newState;
+    }
+    /**
+     * Find a solution by id and
+     * push an object into "solutions" array.
+     */
+    case 'ADD_SOLUTION': {
+      const values = state
+        .values
+        .map((problem) => {
+          if (problem.id === data.problemId) {
+            return {
+              ...problem,
+              // "Concat" is used because "solutions" might be undefined.
+              // Unique id is added to a solution to prevent possible errors.
+              solutions: (problem.solutions || []).concat({ id: uuid(), ...data }),
+            };
+          }
+          return problem;
+        });
+      return Object.assign({}, state, { values });
+    }
+    /**
+     * Find a problem and remove an item from "solutions" array.
+     */
+    case 'DELETE_SOLUTION': {
+      const values = state
+        .values
+        .map((problem) => {
+          if (problem.id === data.problemId) {
+            // "Solutions" array might be undefined.
+            return {
+              ...problem,
+              solutions: filter(problem.solution, i => i.id === data.id) || [],
+            };
+          }
+          return problem;
+        });
+      return Object.assign({}, state, { values });
     }
     default:
       return state;

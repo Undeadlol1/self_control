@@ -3,7 +3,8 @@ import generateUuid from 'uuid/v4';
 import find from 'lodash/find';
 import initialState from '../../store/problems';
 import reducer from '../problems';
-
+// State with values for testing.
+// Notice second object, it has populated "solutions" array.
 const populatedState = Object.assign({}, initialState, {
   values: [
     {
@@ -13,6 +14,11 @@ const populatedState = Object.assign({}, initialState, {
     {
       id: 2,
       title: 'This is another name',
+      solutions: [{
+        id: 3,
+        problemId: 2,
+        title: 'Solution title',
+      }],
     },
   ],
 });
@@ -80,6 +86,34 @@ describe('problems reducer', async () => {
       expect(isUuid(newSolution.id)).toBeTruthy();
       expect(newSolution).toHaveProperty('title', data.title);
       expect(newSolution).toHaveProperty('problemId', data.problemId);
+    });
+  });
+  /**
+   * Find an edit a solution by solution.id.
+   * TODO:
+   */
+  // describe('EDIT_SOLUTION', () => {
+
+  // });
+  /**
+   * Remove a solution from problems.solutions array.
+   */
+  describe('DELETE_SOLUTION', () => {
+    // Make sure array isn't empty before test runs.
+    test('problem.solutions should not be empty', () => {
+      expect(populatedState.values[1].solutions).toHaveLength(1);
+    });
+
+    test('should remove object from array', () => {
+      const action = {
+        type: 'DELETE_SOLUTION',
+        data: {
+          id: 3,
+          problemId: 2,
+        },
+      };
+      const { solutions } = reducer(populatedState, action).values[1];
+      expect(solutions).toHaveLength(0);
     });
   });
   /**
