@@ -17,6 +17,7 @@ class Create extends React.Component {
     error: PropTypes.string,
     success: PropTypes.string,
     loading: PropTypes.bool.isRequired,
+    problemId: PropTypes.string.isRequired,
     onFormSubmit: PropTypes.func.isRequired,
   }
 
@@ -29,8 +30,7 @@ class Create extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      image: '',
+      title: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -40,16 +40,15 @@ class Create extends React.Component {
   handleChange = (name, val) => this.setState({ [name]: val })
 
   handleSubmit = () => {
-    const { onFormSubmit } = this.props;
-
-    return onFormSubmit(this.state)
+    const { onFormSubmit, problemId } = this.props;
+    return onFormSubmit(Object.assign({}, this.state, { problemId }))
       .then(() => setTimeout(() => Actions.pop(), 1000))
       .catch(() => { });
   }
 
   render() {
     const { loading, error, success } = this.props;
-    const { title, image } = this.state;
+    const { title } = this.state;
     return (
       <Container>
         <Content>
@@ -69,14 +68,6 @@ class Create extends React.Component {
                 value={title}
                 disabled={loading}
                 onChangeText={v => this.handleChange('title', v)}
-              />
-            </Item>
-            <Item stackedLabel>
-              <Label>{i18n.t('image_not_required')}</Label>
-              <Input
-                value={image}
-                disabled={loading}
-                onChangeText={v => this.handleChange('image', v)}
               />
             </Item>
 

@@ -54,36 +54,21 @@ const RecipeView = ({
 
         <Spacer size={25} />
 
-        <Card>
-          <CardItem header bordered>
-            <Text>About this recipe</Text>
-          </CardItem>
-          <CardItem>
-            <Body>
-              <Text>{recipe.body}</Text>
-            </Body>
-          </CardItem>
-        </Card>
-
-        <Card>
-          <CardItem header bordered>
-            <Text>Ingredients</Text>
-          </CardItem>
-          <CardItem>
-            <Content>
-              {/* <List>{ingredients}</List> */}
-            </Content>
-          </CardItem>
-        </Card>
-
-        <Card>
-          <CardItem header bordered>
-            <Text>Method</Text>
-          </CardItem>
-          <CardItem>
-            {/* <List>{method}</List> */}
-          </CardItem>
-        </Card>
+        {
+          (recipe.solutions || [])
+            .map(solution => (
+              <Card key={solution.id}>
+                <CardItem header bordered>
+                  <Text>{solution.title}</Text>
+                </CardItem>
+                {/* <CardItem>
+                  <Body>
+                    <Text>This is a body</Text>
+                  </Body>
+                </CardItem> */}
+              </Card>
+            ))
+        }
 
         <Spacer size={20} />
       </Content>

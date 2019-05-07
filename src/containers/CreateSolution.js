@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import CreateProblem from '../native/components/Problem/Create';
-import create from '../actions/problems';
+import CreateSolution from '../native/components/Solution/Create';
+import { addSolution } from '../actions/problems';
 
 class CreateSolutionContainer extends Component {
   static propTypes = {
@@ -12,6 +12,8 @@ class CreateSolutionContainer extends Component {
     // Layout: PropTypes.func.isRequired,
     member: PropTypes.shape({}).isRequired,
     onFormSubmit: PropTypes.func.isRequired,
+    // Router match object with params.
+    match: PropTypes.shape({}).isRequired,
   }
 
   state = {
@@ -41,14 +43,15 @@ class CreateSolutionContainer extends Component {
   }
 
   render = () => {
-    const { member } = this.props;
+    const { member, match } = this.props;
     const { error, loading, success } = this.state;
     return (
-      <CreateProblem
+      <CreateSolution
         error={error}
         member={member}
         loading={loading}
         success={success}
+        problemId={match.params.recipeId}
         onFormSubmit={this.onFormSubmit}
       />
     );
@@ -60,7 +63,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onFormSubmit: create,
+  onFormSubmit: addSolution,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateSolutionContainer);
