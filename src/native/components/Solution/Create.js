@@ -65,6 +65,7 @@ class Create extends React.Component {
             <Item stackedLabel>
               <Label>{i18n.t('title')}</Label>
               <Input
+                autoFocus
                 value={title}
                 disabled={loading}
                 onChangeText={v => this.handleChange('title', v)}
