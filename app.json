@@ -1,8 +1,9 @@
 {
   "expo": {
-    "name": "React Native Starter Kit",
-    "description": "This is a boilerplate that launches with a React web app and React Native mobile app. It shares a single code base! The 'business logic' (i.e. actions, containers, reducers) is shared across both platforms, whilst allowing flexibility in View components to ensure your project looks and feels native in each platform. - https://github.com/mcnamee/react-native-starter-kit",
-    "slug": "self-control",
+    "name": "Self Control",
+    "description": "This app helps you improving self discipline by reminding you how to resolve common issues.",
+    "slug": "self_control",
+    "githubUrl": "https://github.com/Undeadlol1/self_control",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
