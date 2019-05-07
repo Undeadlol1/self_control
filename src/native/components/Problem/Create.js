@@ -67,8 +67,6 @@ class CreateProblem extends React.Component {
               <Label>{i18n.t('title')}</Label>
               <Input
                 autoFocus
-                autoCorrect
-                autoCapitalize
                 value={title}
                 disabled={loading}
                 onChangeText={v => this.handleChange('title', v)}
