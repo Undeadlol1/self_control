@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import {
-  Container, Content, Card, CardItem, Body, H3, List, ListItem, Text,
+  Container, Content, Card, CardItem, Body, H3, List, ListItem, Text, Right, Icon, Button,
 } from 'native-base';
 import { errorMessages } from '../../../constants/messages';
 import Error from '../UI/Error';
@@ -24,19 +24,17 @@ const RecipeView = ({
   // Recipe not found
   if (!recipe) return <Error content={errorMessages.recipe404} />;
 
-  // Build Ingredients listing
-  // const ingredients = recipe.ingredients.map(item => (
-  //   <ListItem key={item} rightIcon={{ style: { opacity: 0 } }}>
-  //     <Text>{item}</Text>
-  //   </ListItem>
-  // ));
-
   // Build Method listing
-  // const method = recipe.method.map(item => (
-  //   <ListItem key={item} rightIcon={{ style: { opacity: 0 } }}>
-  //     <Text>{item}</Text>
-  //   </ListItem>
-  // ));
+  const solutionsList = () => (recipe.solutions || [])
+    .map(solution => (
+      <Card key={solution.id}>
+        <CardItem>
+          <Body>
+            <Text>{solution.text}</Text>
+          </Body>
+        </CardItem>
+      </Card>
+    ));
   const imagePlaceholder = 'https://via.placeholder.com/640x480';
   // Navigate to a new screen when FAB is pressed.
   const onAddProblemPress = () => Actions.createSolution({
@@ -54,21 +52,7 @@ const RecipeView = ({
 
         <Spacer size={25} />
 
-        {
-          (recipe.solutions || [])
-            .map(solution => (
-              <Card key={solution.id}>
-                <CardItem header bordered>
-                  <Text>{solution.text}</Text>
-                </CardItem>
-                {/* <CardItem>
-                  <Body>
-                    <Text>This is a body</Text>
-                  </Body>
-                </CardItem> */}
-              </Card>
-            ))
-        }
+        { solutionsList() }
 
         <Spacer size={20} />
       </Content>
