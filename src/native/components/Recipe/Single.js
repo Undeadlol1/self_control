@@ -59,7 +59,7 @@ const RecipeView = ({
             .map(solution => (
               <Card key={solution.id}>
                 <CardItem header bordered>
-                  <Text>{solution.title}</Text>
+                  <Text>{solution.text}</Text>
                 </CardItem>
                 {/* <CardItem>
                   <Body>

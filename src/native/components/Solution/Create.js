@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Container, Content, Form, Item, Label, Input, Text, Button, View,
+  Container, Content, Form, Item, Label, Input, Text, Button, View, Textarea,
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import Messages from '../UI/Messages';
@@ -30,7 +30,7 @@ class Create extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
+      text: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -47,8 +47,8 @@ class Create extends React.Component {
   }
 
   render() {
+    const { text } = this.state;
     const { loading, error, success } = this.props;
-    const { title } = this.state;
     return (
       <Container>
         <Content>
@@ -62,15 +62,14 @@ class Create extends React.Component {
           </View>
 
           <Form>
-            <Item stackedLabel>
-              <Label>{i18n.t('title')}</Label>
-              <Input
-                autoFocus
-                value={title}
-                disabled={loading}
-                onChangeText={v => this.handleChange('title', v)}
-              />
-            </Item>
+            <Textarea
+                // bordered
+              autoFocus
+              value={text}
+              rowSpan={5}
+              placeholder={i18n.t('text')}
+              onChangeText={v => this.handleChange('text', v)}
+            />
 
             <Spacer size={20} />
 
