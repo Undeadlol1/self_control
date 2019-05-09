@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import {
-  Container, Content, Card, CardItem, Body, H3, List, ListItem, Text, Right, Icon, Button,
+  Container, Content, Card, CardItem, Body, Text,
 } from 'native-base';
 import { errorMessages } from '../../../constants/messages';
 import Error from '../UI/Error';
@@ -46,7 +46,7 @@ const RecipeView = ({
     <Container>
       <Content padder>
         <Image
-          style={{ height: 100, width: null, flex: 1 }}
+          style={{ height: 200, width: null, flex: 1 }}
           source={{ uri: recipe.image || imagePlaceholder }}
         />
 
