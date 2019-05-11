@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import { Scene, Tabs, Stack } from 'react-native-router-flux';
 import { Icon } from 'native-base';
 import i18n from '../../lib/i18n';
@@ -33,6 +34,12 @@ import CreateProblemContainer from '../../containers/CreateProblem';
 import CreateSolution from '../components/Solution/Create';
 import CreateSolutionContainer from '../../containers/CreateSolution';
 
+const navBarButton = (
+  <TouchableOpacity onPress={() => {}}>
+    <Icon name="menu" size={30} />
+  </TouchableOpacity>
+);
+
 const Index = (
   <Stack hideNavBar>
     <Scene hideNavBar>
@@ -50,7 +57,7 @@ const Index = (
         icon={() => <Icon name="home" {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
       >
-        <Scene key="home" component={RecipeListingComponent} />
+        <Scene key="home" component={RecipeListingComponent} renderRightButton={navBarButton} />
         <Scene
           back
           key="createProblem"
