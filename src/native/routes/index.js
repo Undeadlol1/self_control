@@ -30,6 +30,7 @@ import AboutComponent from '../components/About';
 
 import CreateProblem from '../components/Problem/Create';
 import CreateProblemContainer from '../../containers/CreateProblem';
+import ProblemContainer from '../../containers/Problem';
 
 import CreateSolution from '../components/Solution/Create';
 import CreateSolutionContainer from '../../containers/CreateSolution';
@@ -120,7 +121,7 @@ const Index = (
       key="recipe"
       title="RECIPE"
       {...DefaultProps.navbarProps}
-      component={RecipesContainer}
+      component={ProblemContainer}
       Layout={RecipeSingleComponent}
       renderRightButton={RecipeNavBar}
     />
