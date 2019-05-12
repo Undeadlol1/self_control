@@ -4,15 +4,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ActionSheet from 'react-native-custom-actionsheet';
-/**
- * Navigation button which open action sheet on press.
- */
-export default props => (
-  <TouchableOpacity onPress={() => null} style={styles.rightButton}>
-    <Icon name="md-more" size={26} color="grey" />
-    <DefaultExample />
-  </TouchableOpacity>
-);
+import i18n from '../../../lib/i18n';
 
 const styles = StyleSheet.create({
   rightButton: {
@@ -23,45 +15,47 @@ const styles = StyleSheet.create({
     paddingRight: 16,
   },
 });
-
-
-const CANCEL_INDEX = 0;
-const DESTRUCTIVE_INDEX = 4;
-const options = ['Cancel', 'Apple', 'Banana', 'Watermelon', 'Durian'];
-const title = 'Which one do you like?';
-
-class DefaultExample extends React.Component {
-  state = {
-    selected: '',
-  }
-
+/**
+ * Navigation button which open action sheet on press.
+ */
+export default () => (
+  <WithActionSheet />
+);
+/**
+ * This is a wrapper which enables "bottom action sheet" functionality.
+ * I spend 1,5 hours trying to do it non-wrapper way. Doesn't work.
+ * Maybe it is a problem with a module itself.
+ * https://github.com/valerybugakov/react-native-custom-actionsheet
+ * Also "Unable to symbolicate stack trace: Network request failed"
+ * warnings started to occur after introducing this package.
+ */
+class WithActionSheet extends React.Component {
   showActionSheet = () => this.actionSheet.show()
 
-  getActionSheetRef = ref => (this.actionSheet = ref)
+  getActionSheetRef = (ref) => { this.actionSheet = ref; }
 
-  handlePress = index => this.setState({ selected: index })
+  handlePress = (index) => {
+    console.log('index', index);
+  }
 
   render() {
+    const title = i18n.t('what_do_you_want');
+    // List values.
+    const options = [i18n.t('cancel'), i18n.t('edit'), i18n.t('delete')];
     return (
-      <View style={styles.wrapper}>
-        <Text style={{ marginBottom: 20 }}>
-          I like
-          {' '}
-          {options[this.state.selected]}
-        </Text>
-        <Text style={styles.button} onPress={this.showActionSheet}>
-          Default ActionSheet
+      <TouchableOpacity style={styles.rightButton} onPress={this.showActionSheet}>
+        <Text>
+          <Icon name="md-more" size={26} color="grey" />
         </Text>
         <ActionSheet
-          ref={this.getActionSheetRef}
           title={title}
-          message="custom message custom message custom message custom message custom message custom message "
           options={options}
-          cancelButtonIndex={CANCEL_INDEX}
-          destructiveButtonIndex={DESTRUCTIVE_INDEX}
           onPress={this.handlePress}
+          ref={this.getActionSheetRef}
+          cancelButtonIndex={0}
+          destructiveButtonIndex={4}
         />
-      </View>
+      </TouchableOpacity>
     );
   }
 }
