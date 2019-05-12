@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ActionSheet from 'react-native-custom-actionsheet';
+import get from 'lodash/get';
 import i18n from '../../../lib/i18n';
 
 const styles = StyleSheet.create({
@@ -18,8 +19,8 @@ const styles = StyleSheet.create({
 /**
  * Navigation button which open action sheet on press.
  */
-export default () => (
-  <WithActionSheet />
+export default props => (
+  <WithActionSheet {...props} />
 );
 /**
  * This is a wrapper which enables "bottom action sheet" functionality.
@@ -36,6 +37,8 @@ class WithActionSheet extends React.Component {
 
   handlePress = (index) => {
     console.log('index', index);
+    const problemId = get(this, 'props.match.params.id');
+    console.log('problemId: ', problemId);
   }
 
   render() {

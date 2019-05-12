@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
 import { edit, remove } from '../actions/problems';
-
+/**
+ * Container to get single "problem" object and
+ * associated CRUD actions.
+ */
 class Problem extends Component {
   static propTypes = {
     Layout: PropTypes.func.isRequired,

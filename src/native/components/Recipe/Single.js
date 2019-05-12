@@ -13,7 +13,6 @@ import AddProblem from '../UI/AddFab';
 const RecipeView = ({
   error, problem,
 }) => {
-  console.log('problem: ', problem);
   // Error
   if (error) return <Error content={error} />;
 
