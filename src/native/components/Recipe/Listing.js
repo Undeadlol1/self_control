@@ -4,7 +4,7 @@ import {
   FlatList, TouchableOpacity, RefreshControl, Image,
 } from 'react-native';
 import {
-  Container, Content, Card, CardItem, Body, Text,
+  Container, Content, Card, CardItem, Body, Text, Left,
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -12,7 +12,19 @@ import AddProblem from '../UI/AddFab';
 import Loading from '../UI/Loading';
 import Error from '../UI/Error';
 import Spacer from '../UI/Spacer';
-
+/**
+ * Navigate to a problem screen and change navbar title.
+ * @param {object} problem
+ */
+function redirect(problem) {
+  Actions.recipe({
+    title: String(problem.title).toUpperCase(),
+    match: { params: { id: String(problem.id) } },
+  });
+}
+/**
+ * Renders list of problems.
+ */
 const RecipeListing = ({
   error,
   loading,
@@ -26,14 +38,6 @@ const RecipeListing = ({
   if (error) return <Error content={error} />;
 
   const keyExtractor = item => String(item.id);
-  /**
-   * Navigate to problem screen and change navbar title.
-   * @param {object} item A problem.
-   */
-  const onPress = item => Actions.recipe({
-    title: String(item.title).toUpperCase(),
-    match: { params: { id: String(item.id) } },
-  });
 
   const imagePlaceholder = 'https://via.placeholder.com/640x480';
 
@@ -44,30 +48,27 @@ const RecipeListing = ({
           numColumns={1}
           data={problems}
           renderItem={({ item }) => (
-            <Card style={{ paddingHorizontal: 6 }}>
-              <CardItem cardBody>
-                <TouchableOpacity onPress={() => onPress(item)} style={{ flex: 1 }}>
+            <TouchableOpacity onPress={() => redirect(item)} style={{ flex: 1 }}>
+              <Card>
+                <CardItem>
+                  <Left>
+                    <Body>
+                      <Text>{item.title}</Text>
+                    </Body>
+                  </Left>
+                </CardItem>
+                <CardItem cardBody>
                   <Image
                     source={{ uri: item.image || imagePlaceholder }}
                     style={{
                       height: 200,
                       width: null,
                       flex: 1,
-                      borderRadius: 5,
                     }}
                   />
-                </TouchableOpacity>
-              </CardItem>
-              <CardItem cardBody>
-                <Body>
-                  <Spacer size={10} />
-                  <Text style={{ fontWeight: '800' }}>
-                    {item.title}
-                  </Text>
-                  <Spacer size={15} />
-                </Body>
-              </CardItem>
-            </Card>
+                </CardItem>
+              </Card>
+            </TouchableOpacity>
           )}
           keyExtractor={keyExtractor}
           refreshControl={(
