@@ -1,11 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {
-  TouchableOpacity, StyleSheet, View, Text,
+  TouchableOpacity, StyleSheet, Text,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ActionSheet from 'react-native-custom-actionsheet';
 import get from 'lodash/get';
 import i18n from '../../../lib/i18n';
+import { remove, edit } from '../../../actions/problems';
 
 const styles = StyleSheet.create({
   rightButton: {
@@ -19,7 +22,7 @@ const styles = StyleSheet.create({
 /**
  * Navigation button which open action sheet on press.
  */
-export default props => (
+const NavButton = props => (
   <WithActionSheet {...props} />
 );
 /**
@@ -31,14 +34,28 @@ export default props => (
  * warnings started to occur after introducing this package.
  */
 class WithActionSheet extends React.Component {
+  static propTypes = {
+    edit: PropTypes.func.isRequired,
+    remove: PropTypes.func.isRequired,
+  }
+
   showActionSheet = () => this.actionSheet.show()
 
   getActionSheetRef = (ref) => { this.actionSheet = ref; }
 
   handlePress = (index) => {
     console.log('index', index);
-    const problemId = get(this, 'props.match.params.id');
-    console.log('problemId: ', problemId);
+    const { edit: editProblem, remove: removeProblem } = this.props;
+    // problem.id
+    const id = get(this, 'props.match.params.id');
+    switch (index) {
+      case 1:
+        return editProblem({ id });
+      case 2:
+        return removeProblem({ id });
+      default:
+        break;
+    }
   }
 
   render() {
@@ -62,3 +79,13 @@ class WithActionSheet extends React.Component {
     );
   }
 }
+// const mapStateToProps = (state, ownProps) => ({
+//   ...ownProps,
+// });
+// const mapDispatchToProps = {
+//   remove, edit,
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(NavButton);
+
+export default NavButton;

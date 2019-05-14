@@ -1,7 +1,6 @@
-import generateUuid from 'uuid/v4';
 /**
  * Create a problem.
- * @param {object} data problem object directly from form.
+ * @param {Object} data problem object directly from form.
  * @property {string} data.title
  * @property {string} data.image Problem's image URL.
  * @returns {Promise} successful resolve function.
@@ -17,7 +16,7 @@ export default function addProblem(data) {
 }
 /**
  * Create a solution.
- * @param {object} data Solution object directly from form.
+ * @param {Object} data Solution object directly from form.
  * @property {string} data.text
  * @property {string} data.problemId Solution's parent id.
  * @returns {Promise} successful resolve function.
@@ -29,3 +28,35 @@ export const addSolution = data => dispatch => new Promise(async (resolve, rejec
   // Call reducer action.
   return resolve(dispatch({ type: 'ADD_SOLUTION', data }));
 }).catch((err) => { throw err.message; });
+/**
+ * Delete a problem.
+ * @param {Object} data Solution object directly from form.
+ * @property {string} data.id
+ * @returns {Promise} successful resolve function.
+ */
+export function remove(data) {
+  return dispatch => new Promise(async (resolve, reject) => {
+    // Validation rules
+    if (!data.id) return reject({ message: 'missingId' });
+
+    // Call reducer action.
+    return resolve(dispatch({ type: 'DELETE_PROBLEM', data }));
+  }).catch((err) => { throw err.message; });
+}
+/**
+ * Edit a problem.
+ * @param {Object} data Problem object.
+ * @property {string} data.id
+ * @property {string} data.title
+ * @property {string} data.image Problem's image URL.
+ * @returns {Promise} successful resolve function.
+ */
+export function edit(data) {
+  return dispatch => new Promise(async (resolve, reject) => {
+    // Validation rules
+    if (!data.id) return reject({ message: 'missingId' });
+
+    // Call reducer action.
+    return resolve(dispatch({ type: 'EDIT_PROBLEM', data }));
+  }).catch((err) => { throw err.message; });
+}
