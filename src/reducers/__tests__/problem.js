@@ -1,5 +1,4 @@
 import isUuid from 'uuid-validate';
-import generateUuid from 'uuid/v4';
 import find from 'lodash/find';
 import initialState from '../../store/problems';
 import reducer from '../problems';
@@ -123,7 +122,7 @@ describe('problems reducer', async () => {
     // Old state is populated.
     expect(populatedState.values).toHaveLength(2);
     const { id } = populatedState.values[0];
-    const action = { type: 'DELETE_PROBLEM', data: id };
+    const action = { type: 'DELETE_PROBLEM', data: { id } };
     // Get new state.
     const { values } = reducer(populatedState, action);
     expect(values).toHaveLength(1);
