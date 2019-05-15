@@ -5,9 +5,9 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import ActionSheet from 'react-native-custom-actionsheet';
 import get from 'lodash/get';
+import { Actions } from 'react-native-router-flux';
 import i18n from '../../../lib/i18n';
 import { remove, edit } from '../../../actions/problems';
-// import store from '../../../store/index';
 import { store } from '../../../../App';
 
 const styles = StyleSheet.create({
@@ -49,7 +49,7 @@ class WithActionSheet extends React.Component {
       case 1:
         return edit({ id });
       case 2:
-        return dispatch(remove({ id }));
+        return dispatch(remove({ id })) && Actions.reset('home');
       default:
         break;
     }
