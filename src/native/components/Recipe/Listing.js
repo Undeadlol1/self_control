@@ -14,12 +14,14 @@ import Error from '../UI/Error';
 import Spacer from '../UI/Spacer';
 /**
  * Navigate to a problem screen and change navbar title.
- * @param {object} problem
+ * @param {Object} problem
+ * @property {string} problem.id
+ * @property {string} problem.title
  */
-function redirect(problem) {
+function redirect({ title, id }) {
   Actions.recipe({
-    title: String(problem.title).toUpperCase(),
-    match: { params: { id: String(problem.id) } },
+    title: String(title).toUpperCase(),
+    match: { params: { id } },
   });
 }
 /**
