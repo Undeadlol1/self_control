@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import {
   TouchableOpacity, StyleSheet, Text,
 } from 'react-native';
@@ -9,6 +7,8 @@ import ActionSheet from 'react-native-custom-actionsheet';
 import get from 'lodash/get';
 import i18n from '../../../lib/i18n';
 import { remove, edit } from '../../../actions/problems';
+// import store from '../../../store/index';
+import { store } from '../../../../App';
 
 const styles = StyleSheet.create({
   rightButton: {
@@ -34,25 +34,22 @@ const NavButton = props => (
  * warnings started to occur after introducing this package.
  */
 class WithActionSheet extends React.Component {
-  static propTypes = {
-    edit: PropTypes.func.isRequired,
-    remove: PropTypes.func.isRequired,
-  }
-
   showActionSheet = () => this.actionSheet.show()
 
   getActionSheetRef = (ref) => { this.actionSheet = ref; }
 
   handlePress = (index) => {
-    console.log('index', index);
-    const { edit: editProblem, remove: removeProblem } = this.props;
+    // Dispatch actions directly from store to avoid
+    // errors with 'react-native-router-flux' module.
+    // (since this component is passed to Screen through router)
+    const { dispatch } = store;
     // problem.id
     const id = get(this, 'props.match.params.id');
     switch (index) {
       case 1:
-        return editProblem({ id });
+        return edit({ id });
       case 2:
-        return removeProblem({ id });
+        return dispatch(remove({ id }));
       default:
         break;
     }
@@ -79,13 +76,5 @@ class WithActionSheet extends React.Component {
     );
   }
 }
-// const mapStateToProps = (state, ownProps) => ({
-//   ...ownProps,
-// });
-// const mapDispatchToProps = {
-//   remove, edit,
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(NavButton);
 
 export default NavButton;
