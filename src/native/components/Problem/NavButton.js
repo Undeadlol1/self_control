@@ -46,9 +46,9 @@ class WithActionSheet extends React.Component {
     // problem.id
     const id = get(this, 'props.match.params.id');
     switch (index) {
+      // case 1:
+      // return edit({ id });
       case 1:
-        return edit({ id });
-      case 2:
         return dispatch(remove({ id })) && Actions.reset('home');
       default:
         break;
@@ -58,7 +58,7 @@ class WithActionSheet extends React.Component {
   render() {
     const title = i18n.t('what_do_you_want');
     // List values.
-    const options = [i18n.t('cancel'), i18n.t('edit'), i18n.t('delete')];
+    const options = [i18n.t('cancel'), i18n.t('delete')];
     return (
       <TouchableOpacity style={styles.rightButton} onPress={this.showActionSheet}>
         <Text>

@@ -47,8 +47,8 @@ export function remove(data) {
  * Edit a problem.
  * @param {Object} data Problem object.
  * @property {string} data.id
- * @property {string} data.title
- * @property {string} data.image Problem's image URL.
+ * @property {string} [data.title]
+ * @property {string} [data.image] Problem's image URL.
  * @returns {Promise} successful resolve function.
  */
 export function edit(data) {
