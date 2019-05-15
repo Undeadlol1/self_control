@@ -5,6 +5,11 @@ export default {
   // Common.
   loading: 'Загрузка',
   success: 'Успех',
+  edit: 'Редактировать',
+  delete: 'Удалить',
+  cancel: 'Отмена',
+  what_do_you_want: 'Что вы хотите сделать?',
+  missingId: 'Id отсутствует',
   // Problems.
   title: 'Название',
   create: 'Создать',

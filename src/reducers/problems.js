@@ -38,7 +38,7 @@ export default function problemsReducer(state = Store, { type, data }) {
      * Remove problem from 'values' array by id.
      */
     case 'DELETE_PROBLEM': {
-      const values = filter(state.values, i => i.id !== data);
+      const values = filter(state.values, i => i.id !== data.id);
       const newState = Object.assign({}, state, { values });
       return newState;
     }

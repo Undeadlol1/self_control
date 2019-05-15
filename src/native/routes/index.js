@@ -9,6 +9,7 @@ import AppConfig from '../../constants/config';
 import RecipesContainer from '../../containers/Recipes';
 import RecipeListingComponent from '../components/Recipe/Listing';
 import RecipeSingleComponent from '../components/Recipe/Single';
+import RecipeNavBar from '../components/Problem/NavButton';
 
 import SignUpContainer from '../../containers/SignUp';
 import SignUpComponent from '../components/User/SignUp';
@@ -29,6 +30,7 @@ import AboutComponent from '../components/About';
 
 import CreateProblem from '../components/Problem/Create';
 import CreateProblemContainer from '../../containers/CreateProblem';
+import ProblemContainer from '../../containers/Problem';
 
 import CreateSolution from '../components/Solution/Create';
 import CreateSolutionContainer from '../../containers/CreateSolution';
@@ -97,7 +99,7 @@ const Index = (
             back
             key="forgotPassword"
             title="FORGOT PASSWORD"
-            {...DefaultProps.navbarProps}
+            {...DefaultProps.navbarProps}E
             component={ForgotPasswordContainer}
             Layout={ForgotPasswordComponent}
           />
@@ -119,8 +121,9 @@ const Index = (
       key="recipe"
       title="RECIPE"
       {...DefaultProps.navbarProps}
-      component={RecipesContainer}
+      component={ProblemContainer}
       Layout={RecipeSingleComponent}
+      renderRightButton={RecipeNavBar}
     />
   </Stack>
 );

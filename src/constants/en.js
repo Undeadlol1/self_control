@@ -5,6 +5,11 @@ export default {
   // Common.
   loading: 'Loading',
   success: 'Success',
+  edit: 'Edit',
+  delete: 'Delete',
+  cancel: 'Cancel',
+  what_do_you_want: 'What do you want to do?',
+  missingId: 'Id is missing',
   // Problems.
   title: 'Title',
   create: 'Create',

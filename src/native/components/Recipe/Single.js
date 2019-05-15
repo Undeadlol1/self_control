@@ -11,21 +11,16 @@ import Spacer from '../UI/Spacer';
 import AddProblem from '../UI/AddFab';
 
 const RecipeView = ({
-  error, problems, recipeId,
+  error, problem,
 }) => {
   // Error
   if (error) return <Error content={error} />;
 
-  // Get this Recipe from all recipes
-  let recipe = null;
-  if (recipeId && problems) {
-    recipe = problems.find(item => item.id === recipeId);
-  }
-  // Recipe not found
-  if (!recipe) return <Error content={errorMessages.recipe404} />;
+  // Solution not found
+  if (!problem) return <Error content={errorMessages.recipe404} />;
 
   // Build Method listing
-  const solutionsList = () => (recipe.solutions || [])
+  const solutionsList = () => (problem.solutions || [])
     .map(solution => (
       <Card key={solution.id}>
         <CardItem>
@@ -38,8 +33,8 @@ const RecipeView = ({
   const imagePlaceholder = 'https://via.placeholder.com/640x480';
   // Navigate to a new screen when FAB is pressed.
   const onAddProblemPress = () => Actions.createSolution({
-    title: String(recipe.title).toUpperCase(),
-    match: { params: { recipeId: String(recipe.id) } },
+    title: String(problem.title).toUpperCase(),
+    match: { params: { recipeId: problem.id } },
   });
 
   return (
@@ -47,7 +42,7 @@ const RecipeView = ({
       <Content padder>
         <Image
           style={{ height: 200, width: null, flex: 1 }}
-          source={{ uri: recipe.image || imagePlaceholder }}
+          source={{ uri: problem.image || imagePlaceholder }}
         />
 
         <Spacer size={25} />
@@ -63,8 +58,7 @@ const RecipeView = ({
 
 RecipeView.propTypes = {
   error: PropTypes.string,
-  recipeId: PropTypes.string.isRequired,
-  problems: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  problem: PropTypes.shape({}).isRequired,
 };
 
 RecipeView.defaultProps = {
